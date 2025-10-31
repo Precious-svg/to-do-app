@@ -8,12 +8,12 @@ const ThemeProvider = ({children}) => {
   const [isDark, setIsDark ] = useState(systemColorScheme === "dark")
 
   useEffect(() => {
-    loadTheme()
+     loadTheme()
   }, [])
 
   const loadTheme = async() => {
     try {
-      const savedTheme = AsyncStorage.getItem("theme")
+      const savedTheme = await AsyncStorage.getItem("theme")
       if(savedTheme !== null){
         setIsDark(savedTheme === "dark")
       }
@@ -40,5 +40,6 @@ const ThemeProvider = ({children}) => {
     </ThemeContext.Provider>
   )
 }
+export default ThemeProvider;
 
-export  const useTheme = () => useContext(ThemeContext)
+export const useTheme = () => useContext(ThemeContext)

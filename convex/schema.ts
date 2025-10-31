@@ -6,5 +6,5 @@ export default defineSchema({
     text: v.string(),
     isCompleted: v.boolean(),
     createdAt: v.number(),
-  }).index("by_creation_time", ["createdAt"]), 
+  }).index("todos_createdAt", ["createdAt"]), 
 });

@@ -15,10 +15,12 @@ export const addTodo = mutation({
             isCompleted: false,
             createdAt: Date.now()
         });
+        console.log("to be added:", args)
     },
+    
 });
 
-export const toggleTodos = mutation({
+export const toggleTodo = mutation({
   args: {id: v.id("todos")},
   handler: async (ctx, args) => {
     const todo = await ctx.db.get(args.id)
