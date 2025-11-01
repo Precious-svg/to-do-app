@@ -36,3 +36,15 @@ export const deleteTodo = mutation({
         await ctx.db.delete(args.id)
     }
 })
+
+export const deleteCompleted = mutation({
+    handler: async (ctx) => {
+      // Delete all todos where isCompleted is true
+      const completedTodos = await ctx.db.query("todos").filter(q => q.eq(q.field("isCompleted"), true)).collect()
+      
+      for (const todo of completedTodos) {
+        await ctx.db.delete(todo._id)
+      }
+    }
+  })
+  

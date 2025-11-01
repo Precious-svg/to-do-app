@@ -17,26 +17,22 @@ const todos = useQuery(api.todos.getTodos) || []
 const addTodo = useMutation(api.todos.addTodo);
 const deleteTodo = useMutation(api.todos.deleteTodo)
 const toggleTodo = useMutation(api.todos.toggleTodo)
+const deleteCompleted = useMutation(api.todos.deleteCompleted)
 
 const background = isDark ? "#000" : "#fff"
 
 const incompleteTodos = () => {
     setToShow("active")
-    if(toShow === "active"){
         const data = todos?.filter((item) => item.isCompleted === false)
         setActiveTodos(data)
-        return;
-    }
     console.log("no active todos")
 }
 
 const completedTodos = () => {
     setToShow("completed")
-    if(toShow === "completed"){
+    
         const data = todos?.filter((item) => item.isCompleted === true)
         setCompleteTodos(data)
-        return;
-    }
    console.log("no completed todos")
 }
 
@@ -83,7 +79,7 @@ const renderTodoItems = ({item}) => {
                  <Text className="h-full text-[40px]  -mt-3 font-medium text-white">ToDO</Text>
                  <TouchableOpacity className="w-4 h-4 flex items-center self-center" onPress={toggleTheme}>
                     {
-                        isDark ? <Image source={require('../assets/images/sun.png')} className='-mt-1'/> : <Ionicons name='moon-outline' size={24} color="white"/>
+                        isDark ? <Image source={require('../assets/images/sun.png')} className='-mt-1'/> : <Ionicons name='moon-outline' size={24} fill="white" color="white"/>
                     }
                    
                  </TouchableOpacity>
@@ -117,11 +113,15 @@ const renderTodoItems = ({item}) => {
                         <Text  onPress={incompleteTodos}  className={`text-sm ${isDark ? " text-[#C8CBE7]" : " text-[#494C6B]"}`}>Active</Text>
                         <Text  onPress={completedTodos} className={`text-sm ${isDark ? " text-[#C8CBE7]" : " text-[#494C6B]"}`}>Completed</Text>
                     </View>
-                    <Text  className={` text-sm ${isDark ? " text-[#C8CBE7]" : " text-[#494C6B]"}`}>Clear Completed</Text>
+                    <Text onPress={() => deleteCompleted()} className={` text-sm ${isDark ? " text-[#C8CBE7]" : " text-[#494C6B]"}`}>Clear Completed</Text>
                 </View>
              </View>
+
+             <Text className={`pt-6 mx-auto text-center text-sm ${isDark ? " text-[#C8CBE7]" : " text-[#494C6B]"}`}>Drag and drop to reorder list</Text>
         </View>
-    </View>
+
+        
+    </View> 
   )
 }
 
