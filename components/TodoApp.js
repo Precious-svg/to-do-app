@@ -61,7 +61,7 @@ const renderTodoItems = ({item, drag, isActive}) => {
             <TouchableOpacity onPress={()=> toggleTodo({id: item._id})}>
                 <View className={`w-6 h-6 rounded-full flex justify-center items-center`}>
                     {item.isCompleted ? <LinearGradient colors={['#55DDFF', '#C058F3']} start={{x:0, y:0}} end={{x:0, y:0}} className="flex-1 w-full h-full rounded-full items-center justify-center">
-                        <Image source={require("../public/assets/images/Path.png")}/>
+                        <Image source={{uri: "/assets/images/Path.png"}}/>
                     </LinearGradient> : <View className={`border-[1px] h-6 w-6 rounded-full ${isDark ? "border-[#393A4B]" : "border-[#E3E4F1]" }`}></View>}
                 </View>
             </TouchableOpacity>
@@ -76,20 +76,20 @@ const renderTodoItems = ({item, drag, isActive}) => {
         </View>
 
          <TouchableOpacity className="flex w-6 h-6 mr-6 justify-center" onPress={() => deleteTodo({id: item._id})}>
-            <Image  source={ require("../public/assets/images/close.svg")} className={`${isDark ? "text-[#5B5E7E]" : "text-[#494C6B]"}`} />
+            <Image  source={{uri: "/assets/images/close.svg"}} className={`${isDark ? "text-[#5B5E7E]" : "text-[#494C6B]"}`} />
          </TouchableOpacity>
     </TouchableOpacity>
     )
 }
   return (
     <View className={`flex-1 w-[100%] max-w-[1440px] items-center relative min-h-[100vh] overflow-y-scroll`}>
-          <ImageBackground source={ isDark ? require('../public/assets/images/Bitmap.png') : require('../public/assets/images/Bitmap.jpg') } resizeMode='cover'
+          <ImageBackground source={ isDark ? {uri: "/assets/images/Bitmap.png"} : {uri: '/assets/images/Bitmap.jpg'} } resizeMode='cover'
           className="w-[100%] h-[300px] justify-center items-center" >
              <View className="w-[540px] flex-row  justify-between h-[48px] absolute top-[50px]">
                  <Text className="h-full text-[40px]  -mt-3 font-medium text-white">ToDO</Text>
                  <TouchableOpacity className="w-4 h-4 flex items-center self-center" onPress={toggleTheme}>
                     {
-                        isDark ? <Image source={require('../public/assets/images/sun.png')} className='-mt-1'/> : <Ionicons name='moon-outline' size={24} fill="white" color="white"/>
+                        isDark ? <Image source={{ uri: '/assets/images/sun.png'}} className='-mt-1'/> : <Ionicons name='moon-outline' size={24} fill="white" color="white"/>
                     }
                    
                  </TouchableOpacity>
