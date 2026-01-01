@@ -99,9 +99,7 @@ const renderTodoItems = ({item, drag, isActive}) => {
              <View className="w-[540px]  h-[64px] relative gap-6 flex-row items-center">
                  <View  className={`absolute left-6 border-[1px] h-6 w-6 rounded-full ${isDark ? "border-[#393A4B]" : "border-[#E3E4F1]" }`}></View>
                  <TextInput className={`h-full w-full px-16  rounded-md ${isDark ? "bg-[#25273D] text-[#C8CBE7]" : "bg-[#FFFFFF] text-[#494C6B]" }`} placeholder='Add a todo' value={newTodo} onChangeText={setNewTodo}
-                  onSubmitEditing={handleAddTodo}  returnKeyType="done" onKeyPress={({ nativeEvent }) => {
-                    if (nativeEvent.key === 'Enter') handleAddTodo();
-                  }} blurOnSubmit={true}/>
+                  onSubmitEditing={handleAddTodo}  returnKeyType="done"  blurOnSubmit={true}/>
              </View>
         </ImageBackground>
 
